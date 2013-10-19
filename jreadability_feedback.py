@@ -80,7 +80,7 @@ def login():
 			error = u'ユーザ名またはパスワードが無効です'
 		else:
 			session['logged_in'] = True
-			flash(u'ログインしました')
+			# flash(u'ログインしました')
 			return redirect(url_for('view'))
 	return render_template('login.html', error=error)
 

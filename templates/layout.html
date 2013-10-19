@@ -1,25 +1,52 @@
 <!doctype html>
+
+<head>
 <title>jReadability フィードバックビューア</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.min.css') }}">
 <script src="{{ url_for('static', filename='jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
-<script src="{{ url_for('static', filename='jquery.tablesorter.min.js') }}"></script>
 
 <script>
   $(function() {
-    $("table#sortTableExample").tablesorter({ sortList: [[1,0]] });
+    $("table#view").tablesorter({ sortList: [[1,0]] });
   });
 </script>
+</head>
 
-<div class=page>
-  <h1>jReadability フィードバックビューア</h1>
+<body>
+<div class="navbar navbar-default">
+  <div class="contaitner">
+    <div class="navbar-header" style='height:60px;'>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-brand">jReadability フィードバックビューア</div>
+    </div>
+    <!--<div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li style='padding-top:5px;'><a href="/">システム利用</a></li>
+        <li style='padding-top:5px;'><a href="/terms_of_use">利用規約</a></li>
+        <li style='padding-top:5px;'><a href="/q_and_a">よくある質問</a></li>
+        <!-- <li style='padding-top:5px;'><a href="/bbs">掲示板</a></li> 
+      </ul>
+    </div> -->
+  </div>
+</div>
+
+<div class="container">
+  {% for message in get_flashed_messages() %}
+    <p class="text-warning">{{ message }}</p>
+  {% endfor %}
+  {% block body %}{% endblock %}
   <div class=metanav>
   {% if session.logged_in %}
     <a href="{{ url_for('logout') }}">ログアウト</a>
   {% endif %}
   </div>
-  {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
-  {% block body %}{% endblock %}
 </div>
+</body>
+</html>
