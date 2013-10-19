@@ -1,0 +1,5 @@
+settings.txt
+.DS_Store
+*.pyc
+post_dummy.py
+db/*

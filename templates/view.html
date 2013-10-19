@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if posts %}
+    <table class="table table-striped">
+    <thead>
+    <tr>
+      {% for item in fieldsj %} 
+      <td>{{ item }}</td>
+      {% endfor %}
+    </tr>    
+    </thead>
+    <tbody>
+    {% for post in posts %}
+    <tr>
+      {% for item in post %} 
+      <td>{{ item }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+  {% else %}
+    <em>まだフィードバックはありません。</em>
+  {% endif %}
+{% endblock %}
